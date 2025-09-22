@@ -42,10 +42,20 @@ resume-builder/
 ## 🚀 How to Use
 
 1. Clone this repository or download the project files.
+
+
 2. Open index.html in your browser.
+
+
 3.Fill in your details in the form editor (left side).
+
+
 4.Watch your resume preview update in real-time (right side).
+
+
 5.Click Export PDF to download your resume.
+
+
 (Only the preview section will be included in the PDF.)
 
 
