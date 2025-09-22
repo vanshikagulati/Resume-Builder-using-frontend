@@ -1,0 +1,438 @@
+/* ===== Base Reset and Fonts ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f7f8fa;
+  color: #222;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: #4966f7;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+a:hover {
+  color: #223772;
+}
+
+/* ===== Layout Container ===== */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: 36px 0;
+  background: linear-gradient(120deg, #f7f8fa 0%, #e8eaf6 100%);
+}
+
+/* ===== Editor (Form Panel) ===== */
+.panel.editor {
+  flex: 1 1 365px;
+  max-width: 400px;
+  min-width: 280px;
+  margin: 0 0 32px 0;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(116, 141, 245, 0.09);
+  transition: background 0.3s;
+}
+
+.editor-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-bottom: 2px solid #ebedf2;
+}
+
+.editor-header h1 {
+  font-size: 2.05em;
+  font-weight: 700;
+  margin: 0;
+  color: #2845b5;
+  letter-spacing: -1px;
+}
+
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form {
+  padding: 10px 18px 22px 18px;
+}
+
+.section-title {
+  font-size: 1.15em;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #355fff;
+  letter-spacing: 0.2px;
+}
+
+/* ===== Cards & Sections ===== */
+.card.section {
+  margin-bottom: 26px;
+  background: #fafcff;
+  border-radius: 12px;
+  padding: 18px 18px 8px 18px;
+  box-shadow: 0 2px 12px 0 rgba(69, 87, 167, 0.03);
+}
+
+.card.section:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== Form Elements ===== */
+label {
+  display: block;
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  color: #3653a3;
+}
+
+input, textarea, select, button {
+  font-family: inherit;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.7em 1em;
+  margin-bottom: 10px;
+  border: 1.4px solid #e1e7ef;
+  border-radius: 8px;
+  outline: none;
+  background: #f8faff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  color: #223061;
+  box-shadow: 0 1px 4px 0 rgba(36, 56, 138, 0.03);
+}
+
+input:focus,
+textarea:focus {
+  border-color: #6b8bff;
+  background: #f2f5ff;
+  box-shadow: 0 0 0 2px #93acff1c;
+}
+
+input[type="file"] {
+  background: none;
+  border: none;
+  padding-left: 0;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input.small {
+  width: calc(38% - 4px);
+}
+
+/* ===== Buttons ===== */
+.btn, button {
+  background: linear-gradient(90deg,#5e86fc 0,#367bee 100%);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 21px;
+  font-weight: 600;
+  letter-spacing: 0.013em;
+  font-size: 1em;
+  cursor: pointer;
+  margin-bottom: 8px;
+  margin-right: 10px;
+  transition: filter 0.21s, background 0.21s;
+  box-shadow: 0 2px 8px 0 rgba(84,123,250,.09);
+}
+
+.btn.small,
+button.small {
+  font-size: 0.98em;
+  padding: 6px 15px;
+  border-radius: 6px;
+}
+
+.btn.secondary,
+button.secondary {
+  background: #ecefff;
+  color: #4865a7;
+  box-shadow: none;
+}
+
+.btn:active,
+button:active,
+.btn:focus,
+button:focus {
+  filter: brightness(0.98);
+  outline: 2px solid #446df9;
+}
+
+/* ===== Multi-list (Projects/Internships) ===== */
+.multi-list {
+  margin-bottom: 12px;
+}
+
+.multi-list .row {
+  gap: 8px;
+}
+.multi-list .row .btn {
+  margin-bottom: 0;
+}
+
+/* ===== Preview/Resume ===== */
+.preview-wrap {
+  flex: 2.7 1 560px;
+  min-width: 350px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.preview {
+  width: 100%;
+  max-width: 565px;
+}
+
+/* --- Resume Card --- */
+.resume.card {
+  background: #fff !important;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px 0 rgba(84,123,250,.07);
+  padding: 34px 40px 34px 38px;
+  margin-bottom: 18px;
+  min-height: 600px;
+  transition: background 0.3s;
+}
+
+/* --- Header --- */
+.resume .header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #e6eaf2;
+  margin-bottom: 24px;
+  padding-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.avatar {
+  margin-right: 24px;
+}
+
+.avatar img {
+  border-radius: 50%;
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  border: 2px solid #e1e5f7;
+  background: #f5f7fa;
+  box-shadow: 0 1.5px 12px #a8b3d4a5;
+}
+
+.meta {
+  flex: 1;
+}
+
+.name {
+  font-size: 1.70em;
+  font-weight: bold;
+  color: #304a96;
+  margin-bottom: 3px;
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+
+.title {
+  font-size: 1.09em;
+  font-weight: 600;
+  color: #4975e7;
+  margin-bottom: 5px;
+}
+
+.sub, .contact span {
+  color: #6475a9;
+  font-size: 0.98em;
+  margin-right: 15px;
+}
+
+.contact {
+  margin-top: 5px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section h3 {
+  margin-bottom: 7px;
+  font-size: 1.09em;
+  font-weight: 700;
+  color: #3957c5;
+  letter-spacing: 0.07em;
+}
+
+.skills {
+  background: #e9f0ff;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 1em;
+  margin-right: 8px;
+  line-height: 1.8;
+  color: #355cb0;
+}
+
+.skills.muted {
+  background: #f0f2fa;
+  color: #89a1c6;
+  margin-top: 7px;
+}
+
+.item {
+  margin-bottom: 9px;
+}
+
+.progress {
+  margin-top: 28px;
+  height: 7px;
+  background: #e8edfa;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#4f8cfb,#3465d5 90%);
+  border-radius: 7px;
+  transition: width 0.3s;
+}
+
+hr {
+  border: none;
+  border-bottom: 1.7px solid #eff2fa;
+  margin: 22px 0 11px 0;
+}
+
+/* ===== Mobile/Tablet Responsive ===== */
+@media (max-width: 980px) {
+  .container {
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+    padding: 10px;
+  }
+  .panel.editor,
+  .preview-wrap {
+    max-width: 100%;
+    min-width: 0;
+    margin: 0 auto 24px auto;
+    border-radius: 12px;
+  }
+  .resume.card {
+    padding: 18px 12px;
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    padding: 0;
+  }
+  .panel.editor {
+    border-radius: 0;
+    padding: 0 2px;
+  }
+  .preview-wrap {
+    padding: 0;
+  }
+  .resume.card {
+    padding: 4vw 2vw;
+    border-radius: 0;
+  }
+  .editor-header {
+    padding: 8px 9px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  background: #d6e2fa15;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #bcd4fa30;
+  border-radius: 8px;
+}
+
+/* ======= DARK MODE (with .dark class) ======= */
+html.dark, html.dark body {
+  background: #23272f;
+  color: #f4f4f8;
+}
+
+html.dark .panel.editor,
+html.dark .card,
+html.dark .resume.card {
+  background: #222841 !important;
+  color: #f4f4f8;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.17);
+}
+
+html.dark input,
+html.dark textarea {
+  background: #232d3a;
+  color: #e3e8f7;
+  border: 1px solid #44516d;
+}
+
+html.dark input:focus,
+html.dark textarea:focus {
+  border: 1.5px solid #89a7fd;
+  background: #232d3a;
+  color: #fff;
+}
+
+html.dark .btn {
+  background: linear-gradient(90deg, #4f6dfb 0, #355ccc 100%);
+  color: #fff;
+}
+html.dark .btn.secondary {
+  background: #404b6b;
+  color: #dbdef3;
+}
+
+html.dark .skills {
+  background: #33446e;
+  color: #e3e8f7;
+}
+html.dark .skills.muted {
+  background: #232d3a;
+  color: #8897c6;
+}
+html.dark .section-title,
+html.dark .resume .name,
+html.dark .resume .title,
+html.dark .resume .section h3 {
+  color: #aab8fb !important;
+}
+/* End of style.css */

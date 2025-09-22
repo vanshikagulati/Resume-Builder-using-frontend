@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resume Builder</title>
+  
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- LOCAL CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    @media print {
+      body * { visibility: hidden !important; }
+      .preview, .preview * { visibility: visible !important; }
+      .preview { position: absolute; left: 0; top: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container app">
+    <!-- LEFT: Form / Controls -->
+    <aside class="panel editor" aria-label="Resume editor">
+      <header class="editor-header">
+        <h1>Resume Builder</h1>
+        <div class="editor-actions">
+          <button id="dark-toggle" class="btn small">Toggle Dark</button>
+        </div>
+      </header>
+      <form id="resume-form" class="form">
+        <!-- Identity -->
+        <section class="card section" data-section="identity">
+          <h2 class="section-title">Identity</h2>
+          <label>Full name</label>
+          <input type="text" name="name" placeholder="Enter your full name" />
+
+          <label>Professional title</label>
+          <input type="text" name="title" placeholder="Enter your title" />
+
+          <label>Profile photo</label>
+          <input type="file" name="photo" accept="image/*" />
+
+          <label>Location</label>
+          <input type="text" name="location" placeholder="Enter your location" />
+        </section>
+
+        <!-- Contact -->
+        <section class="card section" data-section="contact">
+          <h2 class="section-title">Contact</h2>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="your@email.com" />
+
+          <label>Phone</label>
+          <input type="text" name="phone" placeholder="Your phone number" />
+
+          <label>Personal website / Portfolio</label>
+          <input type="url" name="website" placeholder="Website or portfolio link" />
+
+          <label>LinkedIn</label>
+          <input type="text" name="linkedin" placeholder="LinkedIn profile URL" />
+        </section>
+
+        <!-- Summary -->
+        <section class="card section" data-section="summary">
+          <h2 class="section-title">Summary</h2>
+          <label>Short summary (2–4 lines)</label>
+          <textarea name="summary" placeholder="Your professional summary or objectives"></textarea>
+        </section>
+
+        <!-- Skills -->
+        <section class="card section" data-section="skills">
+          <h2 class="section-title">Skills</h2>
+          <label>Technical skills (comma separated)</label>
+          <input type="text" name="techSkills" placeholder="e.g., HTML, CSS, JavaScript" />
+
+          <label>Soft skills (comma separated)</label>
+          <input type="text" name="softSkills" placeholder="e.g., Communication, Leadership" />
+        </section>
+
+        <!-- Projects -->
+        <section class="card section" data-section="projects">
+          <h2 class="section-title">Projects</h2>
+          <div id="projectsInputs" class="multi-list"></div>
+          <div class="row">
+            <input type="text" id="projectTempTitle" placeholder="Project title — short description" />
+            <button id="addProject" class="btn secondary small">Add</button>
+          </div>
+        </section>
+
+        <!-- Internships -->
+        <section class="card section" data-section="internships">
+          <h2 class="section-title">Internships</h2>
+          <div id="internInputs" class="multi-list"></div>
+          <div class="row">
+            <input type="text" id="internTemp" placeholder="Role — Company — Dates" />
+            <button id="addIntern" class="btn secondary small">Add</button>
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section class="card section" data-section="education">
+          <h2 class="section-title">Education</h2>
+          <label>Class 10th</label>
+          <div class="row">
+            <input type="text" name="edu10" placeholder="School / Board" />
+            <input type="text" name="year10" class="small" placeholder="Year" />
+          </div>
+          <label>Grade / Percentage (10th)</label>
+          <input type="text" name="grade10" placeholder="Grade or percentage" />
+
+          <hr />
+
+          <label>Class 12th</label>
+          <div class="row">
+            <input type="text" name="edu12" placeholder="School / Board" />
+            <input type="text" name="year12" class="small" placeholder="Year" />
+          </div>
+          <label>Grade / Percentage (12th)</label>
+          <input type="text" name="grade12" placeholder="Grade or percentage" />
+
+          <hr />
+
+          <label>Graduation</label>
+          <div class="row">
+            <input type="text" name="eduGrad" placeholder="Degree / University" />
+            <input type="text" name="yearGrad" class="small" placeholder="Year" />
+          </div>
+          <label>Grade / CGPA (Graduation)</label>
+          <input type="text" name="gradeGrad" placeholder="CGPA or percentage" />
+        </section>
+
+        <!-- Extracurricular / Certifications -->
+        <section class="card section" data-section="extras">
+          <h2 class="section-title">Extracurricular & Certifications</h2>
+          <label>Extracurricular (comma separated)</label>
+          <input type="text" name="extracurricular" placeholder="e.g., Volunteer, Event Crew, Clubs" />
+
+          <label>Certifications (one per line)</label>
+          <textarea name="certifications" placeholder="List your certifications, one per line"></textarea>
+        </section>
+
+        <section class="card section" data-section="utils">
+          <div class="row" style="gap:8px;">
+            <button id="export-pdf" class="btn small" type="button">Export PDF</button>
+          </div>
+        </section>
+      </form>
+    </aside>
+
+    <!-- RIGHT: Live Preview -->
+    <main class="preview-wrap">
+      <div class="preview tpl-compact" id="previewPanel" aria-live="polite">
+        <div class="resume card" id="resumeRoot">
+          <div class="header">
+            <div class="avatar">
+              <img id="preview-photo" src="" alt="Profile photo" />
+            </div>
+            <div class="meta">
+              <div class="name" id="preview-name">Your Name</div>
+              <div class="title" id="preview-title">Your Title</div>
+              <div class="sub" id="preview-location">Location</div>
+              <div class="contact" id="preview-contact">
+                <span id="preview-email"></span>
+                <span id="preview-phone"></span>
+                <span id="preview-website"></span>
+                <span id="preview-linkedin"></span>
+              </div>
+            </div>
+          </div>
+
+          <section class="section">
+            <h3>Profile</h3>
+            <div id="preview-summary" class="item">Short professional summary — your strengths and interests.</div>
+          </section>
+
+          <section class="section">
+            <h3>Skills</h3>
+            <div class="skills" id="preview-techSkills"></div>
+            <div class="skills muted" id="preview-softSkills" style="margin-top:8px;"></div>
+          </section>
+
+          <section class="section">
+            <h3>Projects</h3>
+            <div id="preview-projects"></div>
+          </section>
+
+          <section class="section">
+            <h3>Internships</h3>
+            <div id="preview-interns"></div>
+          </section>
+
+          <section class="section">
+            <h3>Education</h3>
+            <div class="item" id="preview-edu10"></div>
+            <div class="item" id="preview-edu12"></div>
+            <div class="item" id="preview-eduGrad"></div>
+          </section>
+
+          <section class="section">
+            <h3>Extracurricular</h3>
+            <div id="preview-extras" class="item"></div>
+          </section>
+
+          <section class="section">
+            <h3>Certifications</h3>
+            <div id="preview-certs"></div>
+          </section>
+
+          <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- PDF + Preview Libraries, then your local JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
